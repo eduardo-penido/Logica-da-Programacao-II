@@ -1,0 +1,46 @@
+<canvas width="900" height="400"></canvas>
+
+<script>
+
+	function desenhaQuadrado(eixoX, eixoY, largura, altura, cor, borda){
+	
+		var tela = document.querySelector('canvas');
+		var pincel = tela.getContext('2d');
+
+		pincel.fillStyle = cor;
+		pincel.fillRect(eixoX, eixoY, largura, altura);
+		pincel.fillStroke = borda;
+		pincel.strokeRect(eixoX, eixoY, largura, altura);
+
+}
+
+function desenhaQuadradoComLoop(eixoX, eixoY, largura, altura, cor, borda, limiteX){
+
+	for(eixoX = 0; eixoX < limiteX; eixoX = eixoX + 50){
+		desenhaQuadrado(eixoX, eixoY, largura, altura, cor, borda);
+	}
+
+}
+
+/*
+function desenhaQuadradoComLoop(){  //este código também funciona
+	//var eixoX = 0; 
+	//while(eixoX < 900){
+		//eixoX = eixoX + 50;
+}
+*/
+
+desenhaQuadradoComLoop(0,  0,50,50,'blue', 'black', 500);
+desenhaQuadradoComLoop(0, 50,50,50,'yellow', 'black', 700);
+desenhaQuadradoComLoop(0,100,50,50,'green', 'black', 500);
+desenhaQuadradoComLoop(0,150,50,50,'white', 'black', 1000);
+desenhaQuadradoComLoop(0,200,50,50,'purple', 'black', 500);
+
+
+
+
+
+
+
+
+</script>

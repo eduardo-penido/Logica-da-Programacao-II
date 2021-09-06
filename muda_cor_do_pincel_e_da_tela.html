@@ -1,0 +1,56 @@
+<canvas width="1500" height="600"></canvas>
+<br>
+Escolha a cor do pincel <input id="cor-pincel" type="color">
+<br>
+<br>
+Escolha a cor do fundo <input id="cor-fundo" type="color"> <button id="alterar-fundo">Mudar Cor</button>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    var paleta = document.querySelector('#cor-pincel'); // Esta variável deveria receber o valor do 1º input 
+    var fundo = document.querySelector('#cor-fundo'); // Esta variável deveria receber o valor do 2º input
+
+    var desenha = false
+
+    pincel.fillStyle = fundo.value; // Deveria receber o valor da variável "fundo", referente ao 2º input
+    pincel.fillRect(0, 0, 1500, 600);
+
+    function desenhaCirculo(evento) {
+
+        if (desenha) {
+            var x = evento.pageX - tela.offsetLeft;
+            var y = evento.pageY - tela.offsetTop;
+            pincel.fillStyle = paleta.value;// Deveria receber o valor da variável "paleta", referente ao 1º input
+            pincel.beginPath();
+            pincel.arc(x, y, 10, 0, 2 * 3.14);
+            pincel.fill();
+        }
+
+        console.log(x + ',' + y);
+    }
+
+    tela.onmousemove = desenhaCirculo;
+
+    function habilitaDesenhar() {
+        desenha = true;
+    }
+
+    function desabilitaDesenhar() {
+        desenha = false;
+    }
+
+    function alterarCorDoFundo() {
+        pincel.fillStyle = fundo.value;
+        pincel.fillRect(0, 0, 1500, 600);
+    }
+
+    const btnFundo = document.querySelector('#alterar-fundo')
+    btnFundo.addEventListener('click', () => {
+        alterarCorDoFundo()
+    })
+
+    tela.onmousedown = habilitaDesenhar;
+    tela.onmouseup = desabilitaDesenhar;
+
+</script>
